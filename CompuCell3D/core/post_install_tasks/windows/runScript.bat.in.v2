@@ -10,9 +10,13 @@ REM this variable can get recusrive addodn with each subsequent run resulting in
 REM also a good idea to keep PATH short anyway
 REM a bit ugly but works...
 
-"%PYTHON_INSTALL_PATH%\python" "%PREFIX_CC3D%\lib\site-packages\cc3d\core\envVarSanitizer.py" "PATH" > "%TMP%\path_modifier.bat"
-CALL  "%TMP%\path_modifier.bat"
-@del "%TMP%\path_modifier.bat"
+goto pathmodifier
+
+:pathmodifier
+    "%PYTHON_INSTALL_PATH%\python" "%PREFIX_CC3D%\lib\site-packages\cc3d\core\envVarSanitizer.py" "PATH" > "%TMP%\path_modifier.bat"
+    if exist %TMP%\path_modifier.bat (
+    CALL  "%TMP%\path_modifier.bat"
+    @del "%TMP%\path_modifier.bat") else (goto pathmodifier)
 
 
 
