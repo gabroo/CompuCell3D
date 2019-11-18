@@ -13,10 +13,9 @@ REM a bit ugly but works...
 goto pathmodifier
 
 :pathmodifier
-    "%PYTHON_INSTALL_PATH%\python" "%PREFIX_CC3D%\lib\site-packages\cc3d\core\envVarSanitizer.py" "PATH" > "%TMP%\path_modifier.bat"
-    if exist %TMP%\path_modifier.bat (
+    ("%PYTHON_INSTALL_PATH%\python" "%PREFIX_CC3D%\lib\site-packages\cc3d\core\envVarSanitizer.py" "PATH" > "%TMP%\path_modifier.bat"
     CALL  "%TMP%\path_modifier.bat"
-    @del "%TMP%\path_modifier.bat") else (goto pathmodifier)
+    @del "%TMP%\path_modifier.bat") || (goto pathmodifier)
 
 
 
