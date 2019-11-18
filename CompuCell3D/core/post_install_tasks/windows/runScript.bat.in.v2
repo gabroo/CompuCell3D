@@ -10,12 +10,25 @@ REM this variable can get recusrive addodn with each subsequent run resulting in
 REM also a good idea to keep PATH short anyway
 REM a bit ugly but works...
 
+@set /A path_mod=0
+
 goto pathmodifier
 
 :pathmodifier
-    ("%PYTHON_INSTALL_PATH%\python" "%PREFIX_CC3D%\lib\site-packages\cc3d\core\envVarSanitizer.py" "PATH" > "%TMP%\path_modifier.bat"
-    CALL  "%TMP%\path_modifier.bat"
-    @del "%TMP%\path_modifier.bat") || (goto pathmodifier)
+    @set path_modifier_file=%TMP%\path_modifier-%path_mod%.bat
+
+    ("%PYTHON_INSTALL_PATH%\python" "%PREFIX_CC3D%\lib\site-packages\cc3d\core\envVarSanitizer.py" "PATH" > "%path_modifier_file%") || GOTO tryagain
+    CALL  "%path_modifier_file%" || GOTO tryagain
+    @del "%path_modifier_file%" || GOTO tryagain
+    GOTO runCC3D
+
+:tryagain
+    @set /A path_mod=%path_mod%+1
+    REM A small delay between attempts seems to work
+    for /L %%q IN (1,1,100) DO ping -n 1 -w 1.1.1.1 > nul
+    GOTO pathmodifier
+
+:runCC3D
 
 
 
