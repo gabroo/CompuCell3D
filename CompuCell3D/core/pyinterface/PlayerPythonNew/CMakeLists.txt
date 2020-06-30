@@ -29,7 +29,7 @@ if (${VTK_MAJOR_VERSION} EQUAL "8")
 endif()
 
 if (${VTK_MAJOR_VERSION} EQUAL "9")
-    SET(VTK_LIBS vtkRenderingVolume vtkInteractionStyle  vtkIOLegacy)
+    SET(VTK_LIBS vtkRenderingOpenGL2-9.0 vtkRenderingVolumeOpenGL2-9.0 vtkInteractionStyle-9.0  vtkIOLegacy-9.0)
 endif()
 
 if (${VTK_MAJOR_VERSION} EQUAL "5")
