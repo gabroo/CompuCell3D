@@ -63,19 +63,10 @@ IF(SWIG_FOUND)
 
     FIND_PACKAGE(VTK REQUIRED)
 
-    message("VTK_MAJOR_VERSION=" ${VTK_MAJOR_VERSION})
-    if (${VTK_MAJOR_VERSION} EQUAL "6")
+    message("IN PYINTERFACE/CMAKELISTS: VTK_MAJOR_VERSION=" ${VTK_MAJOR_VERSION})
+    if (${VTK_MAJOR_VERSION} GREATER_EQUAL "6")
         add_definitions(-DVTK6)
     endif()
-
-    if (${VTK_MAJOR_VERSION} EQUAL "7")    
-        add_definitions(-DVTK6)
-    endif()
-
-    if (${VTK_MAJOR_VERSION} EQUAL "8")    
-        add_definitions(-DVTK6)
-    endif()
-
 
     add_subdirectory(PlayerPythonNew)
     add_subdirectory(SerializerDE)
