@@ -413,6 +413,7 @@ def main_loop(sim, simthread, steppable_registry=None):
     :param steppable_registry:
     :return:
     """
+    print('=====================USING main_loop')
     t1 = time.time()
     compiled_code_run_time = 0.0
 
@@ -508,6 +509,7 @@ def main_loop_player(sim, simthread=None, steppable_registry=None):
     :param steppable_registry:
     :return:
     """
+    print('=====================USING main_loop_player')
     t1 = time.time()
     compiled_code_run_time = 0.0
 
