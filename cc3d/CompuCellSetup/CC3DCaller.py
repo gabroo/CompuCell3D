@@ -15,7 +15,8 @@ class CC3DCaller:
                  output_dir=None,
                  output_file_core_name=None,
                  result_identifier_tag=None,
-                 sim_input=None):
+                 sim_input=None,
+                 lattice_output=False):
 
         self.cc3d_sim_fname = cc3d_sim_fname
         self.output_frequency = output_frequency
@@ -26,6 +27,7 @@ class CC3DCaller:
         self.output_file_core_name = output_file_core_name
         self.result_identifier_tag = result_identifier_tag
         self.sim_input = sim_input
+        self.lattice_output = lattice_output
 
     def run(self):
         persistent_globals = cc3d.CompuCellSetup.persistent_globals
@@ -47,6 +49,10 @@ class CC3DCaller:
         persistent_globals.restart_snapshot_frequency = self.restart_snapshot_frequency
         persistent_globals.restart_multiple_snapshots = self.restart_multiple_snapshots
         persistent_globals.input_object = self.sim_input
+
+        if self.lattice_output:
+            _ = input('setting up lattice output: ')
+            CompuCellSetup.init_lattice_snapshot_objects()
 
         run_cc3d_project(cc3d_sim_fname=self.cc3d_sim_fname)
 
