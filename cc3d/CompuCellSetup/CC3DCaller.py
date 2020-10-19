@@ -51,7 +51,7 @@ class CC3DCaller:
         persistent_globals.input_object = self.sim_input
 
         if self.lattice_output:
-            _ = input('setting up lattice output: ')
+            print('\n\n\n==============================setting up lattice output\n\n\n')
             CompuCellSetup.init_lattice_snapshot_objects()
 
         run_cc3d_project(cc3d_sim_fname=self.cc3d_sim_fname)
