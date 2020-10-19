@@ -9,9 +9,10 @@ SET(SRCS
   
 # FIND_PACKAGE(VTK REQUIRED)
 message("VTK_MAJOR_VERSION=" ${VTK_MAJOR_VERSION})
+message("VTK_MINOR_VERSION=" ${VTK_MINOR_VERSION})
 
 if (${VTK_MAJOR_VERSION} EQUAL "9")    
-    SET(VTK_LIBS vtkRenderingOpenGL vtkInteractionStyle vtkRenderingVolumeOpenGL vtkIOLegacy)
+    SET(VTK_LIBS vtkRenderingOpenGL2-9.0 vtkRenderingVolumeOpenGL2-9.0 vtkInteractionStyle-9.0 vtkIOLegacy-9.0)
 endif()
 
 if (${VTK_MAJOR_VERSION} EQUAL "6")    
